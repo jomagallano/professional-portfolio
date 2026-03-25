@@ -1,253 +1,240 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jo Magallano — AI & Organizational Consultant</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --white:       #FDFCF9;
-      --ink:         #1E1B2E;
-      --muted:       #7B7890;
-      --border:      rgba(30,27,46,0.09);
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
-      /* Lilac family */
-      --lavender:    #EDE8F9;
-      --lilac-soft:  #D9D0F2;
-      --lilac:       #C4B3E8;
-      --lilac-deep:  #9E87D4;
-      --plum-light:  #4A3A72;
-      --plum:        #2E2150;
+import { motion } from "motion/react";
+import { MapPin, Linkedin, Mail, ArrowRight } from "lucide-react";
 
-      /* Warm gold — true complement to blue-violet */
-      --gold:        #E8B830;
-      --gold-deep:   #C99A18;
-      --gold-pale:   rgba(232, 184, 48, 0.1);
+const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-100px" }}
+    transition={{ duration: 0.8, ease: "easeOut", delay }}
+  >
+    {children}
+  </motion.div>
+);
+
+export default function App() {
+  const stats = [
+    { value: "4,000+", label: "Professionals Upskilled" },
+    { value: "Founder & Chair", label: "Corporate AI Council" },
+    { value: "Certified", label: "ASEAN AI Master Trainer" },
+  ];
+
+  const badges = [
+    "Senior AI Enablement Manager",
+    "GCCC Tech Committee",
+    "ASEAN AI Master Trainer",
+    "Applied Economics & Legal Management (DLSU)",
+    "Project Management (PMI)",
+    "Design Thinking Facilitator",
+  ];
+
+  const impacts = [
+    {
+      title: "Enterprise AI Strategy",
+      description: "Leading adoption strategies for thousands of professionals at a global market intelligence leader.",
+      label: "Private Sector"
+    },
+    {
+      title: "ASEAN Workforce Literacy",
+      description: "Upskilling the regional workforce through the ASEAN Foundation's AI Master Trainer program.",
+      label: "Public Sector"
+    },
+    {
+      title: "Policy & Governance",
+      description: "Contributing to technology standards as a member of the GCCC Technology Sub-committee.",
+      label: "Governance"
     }
+  ];
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background-color: var(--white);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
+  return (
+    <div className="min-h-screen selection:bg-lilac selection:text-plum">
+      {/* Background Element */}
+      <div className="fixed -top-[200px] -right-[200px] w-[600px] h-[600px] bg-[radial-gradient(circle,var(--color-lavender)_0%,transparent_70%)] blur-[80px] z-[-1] animate-drift" />
 
-    /* TYPOGRAPHY */
-    h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
-    em { font-style: italic; font-family: 'Cormorant Garamond', serif; }
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 py-6 border-b border-border-custom">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-baseline">
+          <a href="#" className="text-2xl tracking-tight text-plum font-medium">
+            Jo Magallano
+          </a>
+          <div className="hidden md:flex gap-10">
+            {["About", "Impact", "Contact"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm text-muted hover:text-gold-deep transition-colors"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
 
-    /* LAYOUT UTILITIES */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-    section { padding: 120px 0; border-bottom: 1px solid var(--border); }
-    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+      <main>
+        {/* Hero Section */}
+        <section className="pt-48 pb-24 border-b border-border-custom">
+          <div className="max-w-7xl mx-auto px-6 md:px-10">
+            <FadeIn>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight text-plum mb-8 max-w-5xl">
+                Closing the gap between AI potential and <em>organizational readiness.</em>
+              </h1>
+              <p className="text-xl md:text-2xl text-muted max-w-2xl mb-12 font-light">
+                Empowering enterprises and public sector institutions through strategic enablement and practical AI literacy for the ASEAN workforce.
+              </p>
+              
+              <a 
+                href="#impact" 
+                className="inline-flex items-center gap-2 px-9 py-4.5 bg-plum text-white text-sm font-medium rounded-sm hover:bg-plum-light hover:-translate-y-0.5 transition-all hover:shadow-xl hover:shadow-plum/15"
+              >
+                View Impact <ArrowRight className="w-4 h-4" />
+              </a>
 
-    /* BACKGROUND ELEMENT */
-    .bg-blob {
-      position: fixed;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--lavender) 0%, rgba(253,252,249,0) 70%);
-      top: -200px;
-      right: -200px;
-      z-index: -1;
-      filter: blur(80px);
-      animation: drift 20s infinite alternate ease-in-out;
-    }
-    @keyframes drift {
-      from { transform: translate(0,0); }
-      to { transform: translate(-100px, 150px); }
-    }
+              <div className="flex flex-col md:flex-row gap-10 md:gap-16 mt-20">
+                {stats.map((stat, i) => (
+                  <div key={i} className="flex flex-col">
+                    <span className="text-4xl text-gold-deep mb-1">{stat.value}</span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-muted font-semibold">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
 
-    /* NAVIGATION */
-    nav {
-      position: fixed;
-      top: 0; width: 100%;
-      background: rgba(253,252,249,0.8);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-content { display: flex; justify-content: space-between; align-items: baseline; }
-    .logo { font-size: 1.5rem; letter-spacing: -0.02em; color: var(--plum); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 40px; }
-    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.9rem; transition: color 0.3s; }
-    .nav-links a:hover { color: var(--gold-deep); }
+        {/* About Section */}
+        <section id="about" className="py-32 border-b border-border-custom">
+          <div className="max-w-7xl mx-auto px-6 md:px-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] gap-16 lg:gap-24 items-start">
+              <FadeIn>
+                <div className="relative aspect-[4/5] bg-lilac-soft rounded-sm overflow-hidden flex items-center justify-center text-plum italic group">
+                  <div className="absolute inset-5 border border-plum/10" />
+                  <img 
+                    src="https://picsum.photos/seed/jo-portrait/800/1000" 
+                    alt="Jo Magallano" 
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute bottom-8 left-8 text-white text-sm font-serif">
+                    Jo Magallano
+                  </div>
+                </div>
+              </FadeIn>
 
-    /* HERO */
-    .hero { padding: 200px 0 100px; border-bottom: none; }
-    .hero h1 { font-size: 4.5rem; line-height: 1.05; letter-spacing: -0.03em; color: var(--plum); margin-bottom: 30px; }
-    .hero-subhead { font-size: 1.25rem; color: var(--muted); max-width: 600px; margin-bottom: 48px; font-weight: 300; }
-    
-    .hero-stats { display: flex; gap: 60px; margin-top: 80px; }
-    .stat-item .stat-value { font-size: 2.5rem; color: var(--gold-deep); display: block; margin-bottom: 4px; }
-    .stat-item .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+              <div className="flex flex-col">
+                <FadeIn delay={0.2}>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-gold-deep font-bold mb-6 block">
+                    Human-Centered Intelligence
+                  </span>
+                  <h2 className="text-5xl text-plum mb-10 leading-tight">
+                    Enabling the future of work.
+                  </h2>
+                  <div className="text-lg md:text-xl text-ink max-w-2xl font-light space-y-6 leading-relaxed">
+                    <p>
+                      I believe that the greatest barrier to AI adoption isn't the technology—it’s the readiness of the people using it. Currently serving as a Senior AI Enablement Manager at a <strong>global leader in market intelligence</strong>, I lead enterprise-wide adoption strategies for thousands of professionals.
+                    </p>
+                    <p>
+                      As a member of the GCCC Technology Sub-committee and an ASEAN Foundation AI Master Trainer, I operate at the intersection of global standards and local grassroots impact. My methodology is built on <strong>Human+AI Collaboration</strong> and <strong>Systems Thinking</strong>.
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-3 mt-10">
+                    {badges.map((badge, i) => (
+                      <span 
+                        key={i} 
+                        className="px-4 py-2 border border-border-custom rounded-full text-xs text-muted hover:border-gold-deep hover:text-gold-deep transition-colors cursor-default"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                </FadeIn>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    /* BUTTONS */
-    .btn {
-      display: inline-block;
-      padding: 18px 36px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border-radius: 4px;
-      transition: all 0.3s;
-    }
-    .btn-primary { background: var(--plum); color: var(--white); }
-    .btn-primary:hover { background: var(--plum-light); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(46, 33, 80, 0.15); }
+        {/* Impact Section */}
+        <section id="impact" className="py-32 border-b border-border-custom">
+          <div className="max-w-7xl mx-auto px-6 md:px-10">
+            <FadeIn>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-gold-deep font-bold mb-6 block">
+                Selected Experience
+              </span>
+              <h2 className="text-5xl text-plum mb-6">Measurable results.</h2>
+              <p className="text-xl text-muted max-w-2xl font-light mb-16">
+                Strategic engagements across the public and private sectors in the Philippines and the ASEAN region.
+              </p>
 
-    /* SECTION TITLES */
-    .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold-deep); margin-bottom: 24px; font-weight: 600; display: block; }
-    .section-title { font-size: 3rem; color: var(--plum); margin-bottom: 40px; line-height: 1.1; }
-    .section-body { font-size: 1.15rem; color: var(--ink); max-width: 700px; font-weight: 300; }
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {impacts.map((impact, i) => (
+                  <div key={i} className="p-10 border border-border-custom rounded-sm hover:border-lilac transition-colors group">
+                    <span className="text-[10px] uppercase tracking-widest text-gold-deep font-bold mb-4 block">
+                      {impact.label}
+                    </span>
+                    <h3 className="text-2xl text-plum mb-4 group-hover:text-plum-light transition-colors">
+                      {impact.title}
+                    </h3>
+                    <p className="text-muted font-light leading-relaxed">
+                      {impact.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
 
-    /* ABOUT GRID */
-    .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px; align-items: start; }
-    .about-visual { 
-      position: relative; 
-      background: var(--lilac-soft); 
-      aspect-ratio: 4/5; 
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--plum);
-      font-style: italic;
-    }
-    .about-visual::after {
-      content: "";
-      position: absolute;
-      inset: 20px;
-      border: 1px solid rgba(46, 33, 80, 0.1);
-    }
-    .badge-cloud { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-    .badge { padding: 8px 16px; border: 1px solid var(--border); border-radius: 100px; font-size: 0.8rem; color: var(--muted); }
+        {/* Contact Section */}
+        <section id="contact" className="py-32">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 text-center">
+            <FadeIn>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-gold-deep font-bold mb-6 block">
+                Let's Connect
+              </span>
+              <h2 className="text-5xl md:text-6xl text-plum mb-10 leading-tight">
+                Ready to work<br /><em>together?</em>
+              </h2>
+              <p className="text-xl text-muted max-w-xl mx-auto mb-12 font-light">
+                Available for workshops, seminars, and strategic consultancy for organizations navigating the AI era.
+              </p>
+              
+              <a 
+                href="mailto:maemagallano@gmail.com" 
+                className="inline-flex items-center gap-2 px-10 py-5 bg-plum text-white text-sm font-medium rounded-sm hover:bg-plum-light hover:-translate-y-0.5 transition-all hover:shadow-xl hover:shadow-plum/15"
+              >
+                <Mail className="w-4 h-4" /> Send Me a Message
+              </a>
+              
+              <div className="mt-20 flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 text-muted text-sm">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-gold-deep" />
+                  <span>Manila, Philippines</span>
+                </div>
+                <a href="https://linkedin.com/in/jomagallano" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-plum transition-colors">
+                  <Linkedin className="w-4 h-4 text-gold-deep" />
+                  <span>LinkedIn /jomagallano</span>
+                </a>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      </main>
 
-    /* FOOTER */
-    footer { padding: 60px 0; background: var(--plum); color: var(--white); text-align: center; }
-    footer p { font-size: 0.85rem; opacity: 0.6; font-weight: 300; }
-
-    /* MOBILE ADJUSTMENTS */
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 3rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 60px; }
-      .hero-stats { flex-direction: column; gap: 32px; }
-      .nav-links { display: none; }
-    }
-  </style>
-</head>
-<body>
-
-<div class="bg-blob"></div>
-
-<nav>
-  <div class="container nav-content">
-    <a href="#" class="logo">Jo Magallano</a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#impact">Impact</a>
-      <a href="#contact">Contact</a>
+      <footer className="py-16 bg-plum text-white/60 text-center border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <p className="text-xs tracking-widest uppercase font-light">
+            © 2026 Jo Magallano · AI Strategy & Enablement
+          </p>
+        </div>
+      </footer>
     </div>
-  </div>
-</nav>
-
-<section class="hero fade-in">
-  <div class="container">
-    <h1>Closing the gap between AI potential and <em>organizational readiness.</em></h1>
-    <p class="hero-subhead">Empowering enterprises and public sector institutions through strategic enablement and practical AI literacy for the ASEAN workforce.</p>
-    
-    <a href="#impact" class="btn btn-primary">View Impact</a>
-
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-value">4,000+</span>
-        <span class="stat-label">Professionals Upskilled</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-value">Founder & Chair</span>
-        <span class="stat-label">Corporate AI Council</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-value">Certified</span>
-        <span class="stat-label">ASEAN AI Master Trainer</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="fade-in">
-  <div class="container about-grid">
-    <div class="about-visual">
-       [Professional Portrait Placeholder]
-    </div>
-    <div class="about-content">
-      <span class="section-label">Human-Centered Intelligence</span>
-      <h2 class="section-title">Enabling the future of work.</h2>
-      <p class="section-body">
-        I believe that the greatest barrier to AI adoption isn't the technology—it’s the readiness of the people using it. Currently serving as a Senior AI Enablement Manager at a <strong>global leader in market intelligence</strong>, I lead enterprise-wide adoption strategies for thousands of professionals. 
-        <br><br>
-        As a member of the GCCC Technology Sub-committee and an ASEAN Foundation AI Master Trainer, I operate at the intersection of global standards and local grassroots impact. My methodology is built on <strong>Human+AI Collaboration</strong> and <strong>Systems Thinking</strong>: I help organizations see the broad strategic overview of their AI future before drilling down into the specific, persona-based actions that drive day-to-day competency.
-      </p>
-      
-      <div class="badge-cloud">
-        <div class="badge">Senior AI Enablement Manager</div>
-        <div class="badge">GCCC Tech Committee</div>
-        <div class="badge">ASEAN AI Master Trainer</div>
-        <div class="badge">Applied Economics & Legal Management (DLSU)</div>
-        <div class="badge">Project Management (PMI)</div>
-        <div class="badge">Design Thinking Facilitator</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="impact" class="fade-in">
-  <div class="container">
-    <span class="section-label">Selected Experience</span>
-    <h2 class="section-title">Measurable results.</h2>
-    <p class="section-body">Strategic engagements across the public and private sectors in the Philippines and the ASEAN region.</p>
-  </div>
-</section>
-
-<section id="contact" class="fade-in">
-  <div class="container" style="text-align: center;">
-    <span class="section-label">Let's Connect</span>
-    <h2 class="section-title">Ready to work<br><em>together?</em></h2>
-    <p class="section-body" style="margin: 0 auto 40px;">Available for workshops, seminars, and strategic consultancy for organizations navigating the AI era.</p>
-    <a href="mailto:your@email.com" class="btn btn-primary">Send Me a Message</a>
-    
-    <div style="margin-top: 60px; display: flex; justify-content: center; gap: 30px; color: var(--muted); font-size: 0.9rem;">
-      <span>📍 Manila, Philippines</span>
-      <span>💼 LinkedIn /jomagallano</span>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p>© 2026 Jo Magallano · AI Strategy & Enablement</p>
-  </div>
-</footer>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(el => {
-      if (el.isIntersecting) {
-        el.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach(section => {
-    observer.observe(section);
-  });
-</script>
-
-</body>
-</html>
+  );
+}
