@@ -19,7 +19,7 @@ Modern organizations often face an "execution gap" where technology outpaces peo
 * **Performance-First:** Minimal external dependencies for instant load times.
 
 ## 🌐 Live Presence
-The platform is live at: [Your-Vercel-URL-Here]
+The platform is live at: https://jomagallano.vercel.app/
 
 ## 📩 Contact & Collaboration
 I am available for workshops, seminars, and strategic consultancy for organizations navigating the AI era.
