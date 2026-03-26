@@ -121,6 +121,15 @@
     .photo-ring { width: 86%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(255,255,255,0.18); position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
     .photo-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); position: absolute; top: 18%; right: 16%; box-shadow: 0 0 0 5px rgba(232,184,48,0.25); }
     .photo-placeholder { width: 100%; padding: 2rem; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); font-style: italic; position: absolute; bottom: 0; }
+    .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This is the secret! It crops the photo to fit the 3/4 box */
+    object-position: center; /* Ensures your face stays in the middle */
+    position: absolute; /* Lets it sit behind the gold dot and arc */
+    top: 0;
+    left: 0;
+}
 
     /* ── SERVICES ── */
     #services { text-align: center; }
@@ -373,12 +382,14 @@
 </div>
     </div>
   </div>
-  <div class="about-photo">
-    <div class="photo-ring"></div>
+<div class="about-photo">
+    <img src="assets/profile-pic.jpg" alt="Profile Photo" class="profile-image">
+    
     <div class="photo-arc"></div>
+    <div class="photo-ring"></div>
     <div class="photo-dot"></div>
-    <div class="photo-placeholder">
-    <img src="assets/portrait.png" alt="Profile Picture" class="profile-image">
+    
+    <div class="photo-placeholder"></div>
 </div>
   </div>
 </section>
