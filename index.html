@@ -1,17 +1,608 @@
-<section class="about">
-    <h2>About Me</h2>
-    <div class="section-body">
-        <p>
-           I am a passionate developer with a deep interest in creating solutions that enhance user experiences.
-           My journey began with exploring various programming languages and frameworks, leading me to specialize in web development.
-        </p>
-        <p>
-           Over the years, I have worked on numerous projects ranging from small applications to large-scale systems,
-           honing my skills in modern technologies and agile methodologies.
-        </p>
-        <p>
-           I continually strive to learn and adapt, ensuring I am up to date with the latest trends in technology.
-           My goal is to build innovative applications that can make a positive impact in the world.
-        </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jo Magallano — AI Readiness Consultant</title>
+  <meta name="description" content="Jo Magallano is an AI Readiness Consultant and ASEAN AI Master Trainer helping enterprises and public sector institutions build future-ready workforces." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:       #FDFCF9;
+      --ink:         #1E1B2E;
+      --muted:       #7B7890;
+      --border:      rgba(30,27,46,0.09);
+
+      /* Lilac family */
+      --lavender:    #EDE8F9;
+      --lilac-soft:  #D9D0F2;
+      --lilac:       #C4B3E8;
+      --lilac-deep:  #9E87D4;
+      --plum-light:  #4A3A72;
+      --plum:        #2E2150;
+
+      /* Warm gold — true complement to blue-violet */
+      --gold:        #E8B830;
+      --gold-deep:   #C99A18;
+      --gold-pale:   rgba(232,184,48,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 5vw;
+      background: rgba(253,252,249,0.9); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; }
+    .nav-name span { color: var(--gold-deep); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { background: var(--gold) !important; color: var(--ink) !important; padding: 0.45rem 1.2rem; border-radius: 20px; letter-spacing: 0.03em !important; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .nav-cta:hover { background: var(--gold-deep) !important; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,154,24,0.3) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr;
+      align-items: center; padding: 6rem 5vw 4rem; gap: 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-blob { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+    .blob-1 { width: 520px; height: 520px; background: var(--lavender); top: -120px; right: -80px; opacity: 0.9; animation: drift 10s ease-in-out infinite alternate; }
+    .blob-2 { width: 340px; height: 340px; background: var(--lilac-soft); bottom: 5%; left: -100px; opacity: 0.6; animation: drift 14s ease-in-out infinite alternate-reverse; }
+    .blob-3 { width: 160px; height: 160px; background: var(--gold); bottom: 22%; right: 12%; opacity: 0.18; animation: drift 9s ease-in-out infinite alternate; }
+
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(18px,26px) scale(1.06); } }
+
+    .hero-text { position: relative; z-index: 2; animation: fadeUp 0.9s ease both; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--plum-light); margin-bottom: 1.4rem;
+      padding: 0.38rem 1rem 0.38rem 0.7rem;
+      background: var(--lavender); border: 1px solid var(--lilac-soft); border-radius: 20px;
+    }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; box-shadow: 0 0 0 3px rgba(232,184,48,0.25); }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5.5vw, 5.4rem); font-weight: 300; line-height: 1.06; letter-spacing: -0.015em; margin-bottom: 1.6rem; }
+    .hero h1 .hl { font-style: italic; background: linear-gradient(135deg, var(--lilac-deep), var(--plum-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.05rem; line-height: 1.75; color: var(--muted); max-width: 460px; margin-bottom: 2.5rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn { display: inline-block; text-decoration: none; padding: 0.9rem 2.1rem; border-radius: 50px; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.02em; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--gold); color: var(--ink); }
+    .btn-primary:hover { background: var(--gold-deep); box-shadow: 0 10px 30px rgba(201,154,24,0.35); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid rgba(30,27,46,0.15); }
+    .btn-outline:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: rgba(30,27,46,0.25); }
+    .btn-ghost { background: rgba(255,255,255,0.6); color: var(--plum-light); border: 1px solid var(--lilac-soft); backdrop-filter: blur(8px); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.9); box-shadow: 0 8px 24px rgba(158,135,212,0.15); }
+
+    /* ── STAT CARDS ── */
+    .hero-visual { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.9s 0.2s ease both; }
+    .stat-card { background: rgba(255,255,255,0.78); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 20px; padding: 1.4rem 1.8rem; display: flex; align-items: center; gap: 1.2rem; transition: transform 0.2s; }
+    .stat-card:hover { transform: translateX(5px); }
+    .stat-card.accent { border-left: 3px solid var(--gold); }
+    .stat-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; background: var(--lavender); }
+    .stat-icon.hl { background: var(--gold-pale); border: 1px solid rgba(232,184,48,0.3); }
+    .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
+    .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; margin-top: 0.1rem; line-height: 1.2; }
+    .stat-value small { font-size: 0.85rem; font-weight: 300; color: var(--muted); display: block; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 5vw; }
+    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lilac-deep); margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.12; margin-bottom: 1.4rem; }
+    .section-body { font-size: 1rem; line-height: 1.8; color: var(--muted); max-width: 560px; }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+      background: linear-gradient(135deg, var(--lavender) 0%, rgba(217,208,242,0.3) 100%);
+      border-radius: 32px; margin: 0 3vw; padding: 5rem 5%;
+    }
+    #about .section-title { font-size: clamp(1.5rem, 2.4vw, 2.2rem); line-height: 1.25; margin-bottom: 1.8rem; }
+    #about .section-body { max-width: 100%; }
+    #about .section-body + .section-body { margin-top: 1.1rem; }
+    .about-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .badge { font-size: 0.76rem; font-weight: 500; padding: 0.4rem 1rem; border-radius: 20px; letter-spacing: 0.02em; }
+    .badge.hl   { background: var(--gold); color: var(--ink); }
+    .badge.mid  { background: var(--lilac); color: var(--plum-light); }
+    .badge.soft { background: var(--lilac-soft); color: var(--plum-light); }
+    .badge.pale { background: var(--lavender); color: var(--plum-light); border: 1px solid var(--lilac-soft); }
+
+    .about-photo { aspect-ratio: 3/4; border-radius: 28px; background: linear-gradient(160deg, var(--lilac-soft) 0%, var(--lilac-deep) 100%); position: relative; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
+    .photo-arc { width: 70%; aspect-ratio: 1; border-radius: 50% 50% 0 0; background: rgba(255,255,255,0.22); position: absolute; bottom: 0; }
+    .photo-ring { width: 86%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(255,255,255,0.18); position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .photo-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); position: absolute; top: 18%; right: 16%; box-shadow: 0 0 0 5px rgba(232,184,48,0.25); }
+    .photo-placeholder { width: 100%; padding: 2rem; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(255,255,255,0.5); font-style: italic; position: absolute; bottom: 0; }
+
+    /* ── SERVICES ── */
+    #services { text-align: center; }
+    #services .section-title, #services .section-body { margin-left: auto; margin-right: auto; }
+    #services .section-body { margin-bottom: 0; }
+
+    .services-container { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 1.5rem; text-align: left; }
+
+    /* Free tier banner */
+    .service-card.free-tier {
+      background: linear-gradient(135deg, var(--gold-pale) 0%, rgba(232,184,48,0.06) 100%);
+      border: 1.5px solid rgba(232,184,48,0.35); border-radius: 24px; padding: 2.4rem 2.8rem;
+      display: grid; grid-template-columns: auto 1fr; column-gap: 2rem; align-items: start; position: relative;
+    }
+    .service-card.free-tier .service-icon { grid-row: 1 / 4; margin-top: 0.3rem; background: var(--gold-pale); border: 1px solid rgba(232,184,48,0.3); }
+    .service-card.free-tier h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; margin-bottom: 0.7rem; }
+    .service-card.free-tier p { font-size: 0.9rem; line-height: 1.75; color: var(--muted); margin-bottom: 0.5rem; }
+    .service-card.free-tier .service-tag { margin-top: 0.8rem; }
+    .service-status {
+      position: absolute; top: 1.5rem; right: 1.8rem;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--gold); color: var(--ink); padding: 0.3rem 0.9rem; border-radius: 20px;
+    }
+
+    /* Active paid cards — 2 column */
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left; }
+    .service-card.active {
+      border-radius: 24px; padding: 2.4rem; border: 1px solid var(--border); background: var(--white);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .service-card.active:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(158,135,212,0.14); border-color: var(--lilac-soft); }
+    .service-top-bar { height: 3px; border-radius: 3px; margin-bottom: 2rem; background: var(--lilac-deep); }
+    .service-card.active + .service-card.active .service-top-bar { background: var(--lilac); }
+    .service-status-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--lavender); color: var(--plum-light); border: 1px solid var(--lilac-soft);
+      padding: 0.3rem 0.85rem; border-radius: 20px; margin-bottom: 1rem; align-self: flex-start;
+    }
+    .service-status-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--lilac-deep); flex-shrink: 0; }
+
+    .service-icon { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.2rem; background: var(--lavender); flex-shrink: 0; }
+    .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; line-height: 1.2; }
+    .service-card p { font-size: 0.9rem; line-height: 1.75; color: var(--muted); }
+    .service-meta { margin-top: 1.6rem; padding: 1.3rem 1.5rem; background: var(--lavender); border-radius: 14px; border: 1px solid var(--lilac-soft); }
+    .service-meta strong { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--plum-light); display: block; margin-bottom: 0.85rem; }
+    .service-meta ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .service-meta ul li { font-size: 0.87rem; line-height: 1.6; color: var(--muted); padding-left: 1.1rem; position: relative; }
+    .service-meta ul li::before { content: '—'; position: absolute; left: 0; color: var(--lilac-deep); }
+    .service-tag { display: inline-block; margin-top: auto; padding-top: 1.5rem; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--lilac-deep); }
+
+    /* Upcoming */
+    .upcoming-section {
+      background: linear-gradient(135deg, rgba(46,33,80,0.03) 0%, rgba(158,135,212,0.06) 100%);
+      border: 1.5px dashed var(--lilac-soft); border-radius: 24px; padding: 2.4rem 2.8rem;
+    }
+    .section-label-sub {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--lilac-deep); margin-bottom: 1.8rem; display: flex; align-items: center; gap: 0.7rem;
+    }
+    .section-label-sub::before { content: ''; width: 24px; height: 1.5px; background: var(--lilac); border-radius: 2px; }
+    .mini-grid { margin-top: 0 !important; grid-template-columns: 1fr 1fr; }
+    .service-card.upcoming {
+      border-radius: 18px; padding: 2rem 2.2rem; border: 1px solid rgba(196,179,232,0.3);
+      background: rgba(255,255,255,0.65); backdrop-filter: blur(8px); opacity: 0.82;
+    }
+    .service-card.upcoming .service-icon { background: rgba(196,179,232,0.2); }
+    .service-card.upcoming h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; margin-bottom: 0.65rem; }
+    .service-card.upcoming p { font-size: 0.88rem; line-height: 1.7; color: var(--muted); }
+    .text-link { font-size: 0.85rem; font-weight: 500; color: var(--plum-light); text-decoration: none; border-bottom: 1px solid var(--lilac); padding-bottom: 0.1rem; transition: color 0.2s, border-color 0.2s; }
+    .text-link:hover { color: var(--plum); border-color: var(--plum-light); }
+    .services-footer .section-body { margin: 0 auto 1.8rem; }
+
+    /* ── PORTFOLIO ── */
+    #portfolio {
+      background: linear-gradient(135deg, var(--lavender) 0%, rgba(217,208,242,0.25) 100%);
+      border-radius: 32px; margin: 0 3vw;
+    }
+    #portfolio .section-body { max-width: 620px; }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .portfolio-card {
+      background: rgba(255,255,255,0.75); backdrop-filter: blur(10px);
+      border: 1px solid rgba(196,179,232,0.3);
+      border-radius: 22px; padding: 2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(158,135,212,0.14); }
+    .portfolio-type {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--plum-light); background: var(--lilac-soft);
+      padding: 0.28rem 0.75rem; border-radius: 20px;
+      margin-bottom: 1.2rem; align-self: flex-start;
+    }
+    .portfolio-type.gold { background: var(--gold-pale); color: var(--gold-deep); border: 1px solid rgba(232,184,48,0.3); }
+    .portfolio-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.6rem; line-height: 1.25; }
+    .portfolio-card p { font-size: 0.88rem; line-height: 1.7; color: var(--muted); flex: 1; }
+    .portfolio-meta {
+      display: flex; gap: 1rem; margin-top: 1.4rem;
+      padding-top: 1.2rem; border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .portfolio-meta-item { font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; gap: 0.3rem; }
+    .portfolio-meta-item strong { color: var(--plum-light); font-weight: 500; }
+
+    .portfolio-note {
+      margin-top: 2.5rem; padding: 1.4rem 1.8rem;
+      background: var(--gold-pale); border: 1px solid rgba(232,184,48,0.3);
+      border-radius: 16px; display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .portfolio-note-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .portfolio-note p { font-size: 0.85rem; line-height: 1.6; color: var(--plum-light); }
+
+    /* ── CLIENTS ── */
+    #clients { background: var(--plum); border-radius: 32px; margin: 0 3vw; }
+    #clients .section-label { color: var(--lilac-soft); }
+    #clients .section-title { color: var(--white); }
+    #clients .section-title em { font-style: italic; font-family: 'Cormorant Garamond', serif; color: var(--lilac); }
+    #clients .section-body { color: rgba(255,255,255,0.6); }
+    .client-types { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; margin-top: 3rem; }
+    .client-type { border: 1px solid rgba(196,179,232,0.18); background: rgba(255,255,255,0.05); border-radius: 20px; padding: 2rem 1.6rem; text-align: center; transition: background 0.25s, border-color 0.25s, transform 0.25s; }
+    .client-type:hover { background: rgba(196,179,232,0.12); border-color: rgba(196,179,232,0.35); transform: translateY(-4px); }
+    .client-type-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .client-type h4 { font-size: 0.95rem; font-weight: 500; color: var(--white); margin-bottom: 0.6rem; }
+    .client-type p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    /* ── TESTIMONIAL ── */
+    #testimonials { text-align: center; }
+    .testimonial-block { max-width: 680px; margin: 3rem auto 0; background: var(--lavender); border: 1px solid var(--lilac-soft); border-radius: 28px; padding: 3.2rem; position: relative; }
+    .testimonial-block::before { content: '\201C'; font-family: 'Cormorant Garamond', serif; font-size: 7rem; line-height: 0.6; color: var(--lilac); opacity: 0.45; position: absolute; top: 2rem; left: 2.5rem; }
+    .testimonial-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; font-style: italic; line-height: 1.5; margin-bottom: 1.5rem; color: var(--plum-light); position: relative; }
+    .testimonial-divider { width: 36px; height: 2px; background: var(--gold); margin: 0 auto 1.2rem; border-radius: 2px; }
+    .testimonial-author { font-size: 0.84rem; color: var(--muted); font-weight: 500; }
+
+    /* ── CONTACT ── */
+    #contact { text-align: center; background: linear-gradient(150deg, var(--lavender) 0%, rgba(196,179,232,0.28) 50%, var(--lavender) 100%); border-radius: 32px; margin: 0 3vw 4rem; }
+    #contact .section-title { font-size: clamp(2.4rem, 4vw, 4rem); }
+    #contact .section-body { margin: 0 auto 2.5rem; }
+    #contact .section-title em { font-style: italic; font-family: 'Cormorant Garamond', serif; background: linear-gradient(135deg, var(--lilac-deep), var(--plum-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .contact-chips { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.8rem; }
+    .contact-chip { background: rgba(255,255,255,0.75); backdrop-filter: blur(8px); border: 1px solid rgba(196,179,232,0.4); border-radius: 12px; padding: 0.75rem 1.3rem; font-size: 0.84rem; color: var(--plum-light); display: flex; align-items: center; gap: 0.5rem; }
+
+    /* ── FOOTER ── */
+    footer { text-align: center; padding: 2.5rem 5vw; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.animate { opacity: 0; transform: translateY(24px); }
+    .fade-in.animate.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 8rem; }
+      .hero-visual { display: none; }
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+      .about-photo { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .client-types { grid-template-columns: 1fr 1fr; }
+      .service-card.free-tier { grid-template-columns: 1fr; }
+      .service-card.free-tier .service-icon { grid-row: auto; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .client-types { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .upcoming-section { padding: 1.8rem; }
+      .service-card.free-tier { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Jo Magallano<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Impact</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact" class="nav-cta">Work With Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob blob-1"></div>
+  <div class="hero-blob blob-2"></div>
+  <div class="hero-blob blob-3"></div>
+  <div class="hero-text">
+    <span class="hero-eyebrow"><span class="eyebrow-dot"></span>AI Consultant &amp; Trainer</span>
+    <h1>I design systems that make AI adoption<br><span class="hl">stick.</span></h1>
+    <p class="hero-sub">Senior AI Enablement leader and ASEAN-certified trainer helping governments, NGOs, and development organizations move from AI curiosity to real, sustained capability.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Work With Me</a>
+      <a href="#portfolio" class="btn btn-outline">See My Work</a>
     </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-card accent">
+      <div class="stat-icon hl">🎓</div>
+      <div>
+        <div class="stat-label">Impact</div>
+        <div class="stat-value">5,000+ <small>Professionals Upskilled</small></div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🏛️</div>
+      <div>
+        <div class="stat-label">Leadership</div>
+        <div class="stat-value">Founder &amp; Chair <small>Corporate AI Council</small></div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">✅</div>
+      <div>
+        <div class="stat-label">Credential</div>
+        <div class="stat-value">Certified <small>ASEAN AI Master Trainer</small></div>
+      </div>
+    </div>
+  </div>
 </section>
+
+<!-- ABOUT -->
+<section id="about" class="fade-in">
+  <div>
+    <div class="section-label">Human-Centered Intelligence</div>
+    <h2 class="section-title">I'm a systems thinker who works at the intersection of AI, people, and organizational change.</h2>
+    <p class="section-body">By day I lead enterprise-wide AI enablement for thousands of professionals at a global market intelligence firm. Outside of that, I work with governments, NGOs, and development organizations across the Philippines and ASEAN who are serious about making AI adoption real — not performative.</p>
+    <p class="section-body" style="margin-top:1rem">My approach is built on one belief: sustainable AI adoption isn't a training problem. It's a whole-organization design challenge. I don't come in with a generic program and leave. I help institutions see the full picture first — the strategy, the people, the workflows, the culture — and then intervene where it actually matters.</p>
+    <p class="section-body" style="margin-top:1rem">I hold an ISO 42001 AI Management Systems certification, serve as a Certified ASEAN AI Master Trainer under the ASEAN Foundation, and sit on the GCCC Technology Committee. I've trained 5,000+ professionals across public sector, education, and development sectors — including a program that culminated in a presentation to the President of the Philippines.</p>
+    <p class="section-body" style="margin-top:1rem">I apply the same systems thinking to my own career and practice — which means I take on engagements selectively, work deeply rather than broadly, and stay accountable to outcomes long after the workshop ends.</p>
+    <div class="about-badges">
+     <div class="badge-cloud">
+  <span class="badge hl">ASEAN AI Master Trainer</span>
+  <span class="badge hl">ISO 42001 AI Management Systems Implementer</span>
+  
+  <span class="badge mid">Systems-Led AI Enablement</span>
+  <span class="badge mid">Project Management Professional (PMI)</span>
+  
+  <span class="badge soft">Philippines & ASEAN Market</span>
+  <span class="badge pale">Certified Design Thinking Facilitator</span>
+</div>
+    </div>
+  </div>
+  <div class="about-photo">
+    <div class="photo-ring"></div>
+    <div class="photo-arc"></div>
+    <div class="photo-dot"></div>
+    <div class="photo-placeholder">[ Your photo here ]</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="fade-in">
+  <div class="section-label">What I Offer</div>
+  <h2 class="section-title">Services</h2>
+  <p class="section-body">
+    Every engagement starts with the same question: <em>what does this organization actually need to make AI work?</em> From there, I design the right intervention — whether that's a single workshop or a sustained program. Every engagement is rooted in systems design: we map the whole before we intervene in any part.
+  </p>
+
+  <div class="services-container">
+    
+    <div class="service-card free-tier">
+      <div class="service-status">Free Engagement</div>
+      <div class="service-icon">🌏</div>
+      <h3>Hour of AI — AI Literacy for Everyone</h3>
+      <p>A free, accessible introduction to AI delivered on behalf of the <strong>ASEAN Foundation</strong>. Designed for communities, schools, and public sector teams who are curious about AI but don't know where to start.</p>
+      <p style="margin-top:0.75rem;">We cover what AI actually is, how it's already shaping work and daily life, and what it means for the people in the room — practically and honestly.</p>
+      <p style="margin-top:0.75rem; font-size:0.82rem; font-style:italic; color:var(--muted);">Delivered in partnership with the ASEAN Foundation. Free for qualifying organizations.</p>
+      <span class="service-tag">→ Ideal for schools, community groups, LGUs, and public sector teams</span>
+    </div>
+
+    <div class="services-grid">
+      
+      <div class="service-card active">
+        <div class="service-top-bar"></div>
+        <div class="service-icon">🤖</div>
+        <h3>AI Literacy &amp; Workforce Training</h3>
+        <p>Half-day to multi-day programs that move teams from AI-anxious to AI-capable. Not generic. Not theoretical. Built around your organization's actual roles, tools, and workflows.</p>
+        
+        <div class="service-meta">
+          <strong>Available Tracks:</strong>
+          <ul>
+            <li><strong>Foundational</strong> — What AI is, how it works, and what it means for your role. For teams at the beginning.</li>
+            <li><strong>Applied</strong> — Hands-on with AI tools relevant to your specific context. Participants leave with things they can use the next day.</li>
+            <li><strong>Advanced</strong> — Deeper automation, prompt engineering, and workflow redesign for teams ready to go further.</li>
+          </ul>
+        </div>
+        <p style="margin-top:0.75rem; font-size:0.82rem; font-style:italic; color:var(--muted);">Available as standalone engagements or as part of a broader program.</p>
+        <span class="service-tag">→ Ideal for government agencies, NGOs, development organizations, and professional communities</span>
+      </div>
+
+      <div class="service-card active">
+        <div class="service-top-bar"></div>
+        <div class="service-status-pill">Limited Engagements</div>
+        <div class="service-icon">🗺️</div>
+        <h3>AI Strategy &amp; Readiness Advisory</h3>
+        <p>For leadership teams who know AI matters but aren't sure where to start — or why previous efforts haven't stuck. A structured diagnostic engagement that delivers a clear, prioritized roadmap. Not a slide deck full of frameworks. A practical plan your team can actually act on.</p>
+        
+        <div class="service-meta">
+          <strong>Two Scopes:</strong>
+          <ul>
+            <li><em>Rapid Assessment (1 week)</em> — Focused interviews, maturity snapshot, and immediate priorities. For organizations that need clarity fast.</li>
+            <li><em>Full Readiness Roadmap (3–4 weeks)</em> — Comprehensive assessment across departments, detailed roadmap, and a briefing session with leadership.</li>
+          </ul>
+        </div>
+        <p style="margin-top:0.75rem; font-size:0.82rem; font-style:italic; color:var(--muted);">I take a limited number of advisory engagements. If you're considering this, reach out early.</p>
+        <span class="service-tag">→ Ideal for government agencies, NGO leadership, and foundations planning an AI initiative</span>
+      </div>
+    </div>
+
+    <div class="upcoming-section">
+      <div class="section-label-sub">Coming Soon · Accepting Expressions of Interest</div>
+      <div class="services-grid mini-grid">
+        <div class="service-card upcoming">
+          <div class="service-icon">🌱</div>
+          <h3>Building Internal AI Champions</h3>
+          <p>A cohort-based program that installs sustained AI capability inside your organization — through people, not just tools. Designed for institutions that want AI adoption to outlast any single engagement.</p>
+        </div>
+        <div class="service-card upcoming">
+          <div class="service-icon">📋</div>
+          <h3>AI Governance &amp; Policy Advisory</h3>
+          <p>Helping organizations establish the frameworks, policies, and accountability structures needed to use AI responsibly. Grounded in ISO 42001 and designed for institutions where governance isn't optional.</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: 1rem;">
+        <a href="#contact" class="text-link">Interested in either of these? I'm accepting early expressions of interest. →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="services-footer">
+    <p class="section-body" style="margin:0 auto 1.8rem;">Not sure which fits your situation? Most organizations start with a conversation.</p>
+    <a href="#contact" class="btn btn-primary">Let's talk →</a>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="portfolio" class="fade-in">
+  <div class="section-label">Selected Work</div>
+  <h2 class="section-title">What I've done.</h2>
+  <p class="section-body">A cross-sector portfolio spanning national government, education, development, and professional communities across the Philippines and ASEAN.</p>
+
+  <!-- Presidential Highlight Strip -->
+  <div style="margin-top:2.5rem; padding:1.8rem 2.2rem; background: linear-gradient(135deg, var(--plum) 0%, var(--plum-light) 100%); border-radius: 22px; display:flex; align-items:center; gap:1.8rem; flex-wrap:wrap;">
+    <div style="font-size:2.4rem; flex-shrink:0;">🇵🇭</div>
+    <div style="flex:1; min-width:220px;">
+      <div style="font-size:0.7rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--lilac); margin-bottom:0.4rem;">Featured Moment</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--white); line-height:1.3;">Presented to the President of the Philippines</div>
+      <div style="font-size:0.85rem; color:rgba(255,255,255,0.55); margin-top:0.4rem;">As part of the <em>Hour of AI</em> initiative — a national program on AI integration in Philippine education, delivered in partnership with DepEd.</div>
+    </div>
+    <div style="background:var(--gold); color:var(--ink); font-size:0.75rem; font-weight:500; padding:0.45rem 1.1rem; border-radius:20px; letter-spacing:0.04em; flex-shrink:0;">Hour of AI · DepEd Philippines</div>
+  </div>
+
+  <div class="portfolio-grid" style="margin-top:2rem;">
+
+    <div class="portfolio-card">
+      <span class="portfolio-type gold">🏛️ Public Sector</span>
+      <h3>AI for the Future-Ready Government Workforce</h3>
+      <p>A 3-day national training program equipping 800+ government professionals with practical AI skills and frameworks for staying relevant in an AI-augmented public sector. Participants explored how AI reshapes roles, workflows, and decision-making across government functions.</p>
+      <div class="portfolio-meta">
+        <span class="portfolio-meta-item">🏢 <strong>DICT Philippines</strong></span>
+        <span class="portfolio-meta-item">👥 <strong>800+ participants</strong></span>
+        <span class="portfolio-meta-item">📆 <strong>3-day program</strong></span>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <span class="portfolio-type gold">🏛️ Public Sector — Advanced</span>
+      <h3>Advanced AI Tools for Government: Copilot, Google AI Studio &amp; PPAs</h3>
+      <p>A paid 2-day advanced training for DICT Bislig moving participants from AI awareness to hands-on application — covering Microsoft Copilot, Google AI Studio, and how to deploy personal productivity automations in real government workflows.</p>
+      <div class="portfolio-meta">
+        <span class="portfolio-meta-item">🏢 <strong>DICT Bislig, Caraga</strong></span>
+        <span class="portfolio-meta-item">👥 <strong>Government professionals</strong></span>
+        <span class="portfolio-meta-item">📆 <strong>2-day advanced track</strong></span>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <span class="portfolio-type" style="background:var(--lavender); color:var(--plum-light);">🎓 Education Sector</span>
+      <h3>AI Integration: From Theory to Transformative Classroom Practice</h3>
+      <p>A nationwide series of sessions for DepEd educators on embedding AI meaningfully into classroom practice — moving beyond novelty toward genuine pedagogical transformation. The program culminated in an <em>Hour of AI</em> presentation to the President of the Philippines.</p>
+      <div class="portfolio-meta">
+        <span class="portfolio-meta-item">🏢 <strong>DepEd Philippines</strong></span>
+        <span class="portfolio-meta-item">👥 <strong>Educators nationwide</strong></span>
+        <span class="portfolio-meta-item">📆 <strong>Multi-session series</strong></span>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <span class="portfolio-type">🌐 Development Sector</span>
+      <h3>AI-Driven Knowledge &amp; Records Management for Government Professionals</h3>
+      <p>An upcoming multi-day workshop for government professionals in Palawan, bridging AI tools with knowledge and records management — helping participants apply intelligent automation to the documentation challenges most institutions deprioritize but every organization needs to solve.</p>
+      <div class="portfolio-meta">
+        <span class="portfolio-meta-item">🏢 <strong>GROAP</strong></span>
+        <span class="portfolio-meta-item">📍 <strong>Palawan</strong></span>
+        <span class="portfolio-meta-item">📆 <strong>Upcoming · 2026</strong></span>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <span class="portfolio-type" style="background:rgba(232,184,48,0.12); color:var(--gold-deep); border:1px solid rgba(232,184,48,0.25);">👩‍💼 Professional Community</span>
+      <h3>Prompt Engineering &amp; AI for Marketing Professionals</h3>
+      <p>Practical workshops for marketing virtual assistants and professionals within the WIN WIN Women Inter Industry Network — covering AI tools for content creation, client productivity, and prompt engineering to sharpen their competitive edge in an AI-accelerated market.</p>
+      <div class="portfolio-meta">
+        <span class="portfolio-meta-item">🏢 <strong>WIN WIN Network</strong></span>
+        <span class="portfolio-meta-item">👥 <strong>Marketing &amp; VA professionals</strong></span>
+        <span class="portfolio-meta-item">📆 <strong>Workshop series</strong></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="portfolio-note">
+    <span class="portfolio-note-icon">🔒</span>
+    <p>Additional engagements are kept confidential at the client's request. Full case studies and references are available upon request for qualified inquiries.</p>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients" class="fade-in">
+  <div class="section-label">Who I Work With</div>
+  <h2 class="section-title">Built for organizations<br><em>that mean it.</em></h2>
+  <p class="section-body">I work best with institutions where AI adoption is a matter of public impact — not just productivity. If your work touches communities, policy, or human development, we're probably a good fit.</p>
+  <div class="client-types">
+    <div class="client-type"><div class="client-type-icon">🏛️</div><h4>Government Agencies &amp; LGUs</h4><p>From national agencies navigating digitalization mandates to provincial units building capacity from the ground up. I help public servants understand AI practically — and use it responsibly.</p></div>
+    <div class="client-type"><div class="client-type-icon">🌐</div><h4>NGOs &amp; Development Orgs</h4><p>Mission-driven organizations applying AI to amplify their development work. If you're thinking about how AI fits into your programs, your data, or your team — that's exactly where I start.</p></div>
+    <div class="client-type"><div class="client-type-icon">🤝</div><h4>Foundations &amp; Multilaterals</h4><p>Regional bodies and funding institutions investing in AI literacy and governance capacity across ASEAN. I bring both the enablement and the governance perspective to these engagements.</p></div>
+    <div class="client-type"><div class="client-type-icon">🎓</div><h4>Academia &amp; Training Institutions</h4><p>Educators and institutional leaders embedding AI literacy into curriculum and organizational culture — not as a trend, but as a durable competency.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section id="testimonials" class="fade-in" style="display: none;">
+  <div class="section-label">What Clients Say</div>
+  <h2 class="section-title">Kind words.</h2>
+  <div class="testimonial-block">
+    <div class="testimonial-quote">[Testimonial quote from a past client or participant. Something specific and outcome-focused tends to land best.]</div>
+    <div class="testimonial-divider"></div>
+    <div class="testimonial-author">— [Name], [Title], [Organization]</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="fade-in">
+  <div class="section-label">Let's Connect</div>
+  <h2 class="section-title">Ready to work<br><em>together?</em></h2>
+  <a href="/cdn-cgi/l/email-protection#6c0603010d0b0d00000d02032c0f150e091e0b190d1e08050d021f1c0442031e0b" class="btn btn-primary">Send Me a Message</a>
+  <div class="contact-chips">
+    <div class="contact-chip">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="117b7e7c7076707d7d707f7e517268737463766470637578707f6261793f7e6376">[email&#160;protected]</a></div>
+    <div class="contact-chip">💼 LinkedIn: <a href="https://linkedin.com/in/jomagallano" target="_blank">jomagallano</a></div>
+    <div class="contact-chip">📍 Philippines </div>
+    <div class="contact-chip">🗓️ Available for workshops, seminars, and strategic consultancy</div>
+  </div>
+</section>
+
+<footer><p>© 2026 Jo Magallano · All rights reserved</p></footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var fadeEls = document.querySelectorAll(".fade-in");
+    fadeEls.forEach(function(el) { el.classList.add("animate"); });
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    fadeEls.forEach(function(el) { observer.observe(el); });
+  });
+</script>
+</body>
+</html>
