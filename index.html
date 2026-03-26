@@ -109,7 +109,7 @@
     #about .section-title { font-size: clamp(1.5rem, 2.4vw, 2.2rem); line-height: 1.25; margin-bottom: 1.8rem; }
     #about .section-body { max-width: 100%; }
     #about .section-body + .section-body { margin-top: 1.1rem; }
-    .about-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .about-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; align-items: center; }
     .badge { font-size: 0.76rem; font-weight: 500; padding: 0.4rem 1rem; border-radius: 20px; letter-spacing: 0.02em; }
     .badge.hl   { background: var(--gold); color: var(--ink); }
     .badge.mid  { background: var(--lilac); color: var(--plum-light); }
@@ -142,12 +142,12 @@
     .service-card.free-tier {
       background: linear-gradient(135deg, var(--gold-pale) 0%, rgba(232,184,48,0.06) 100%);
       border: 1.5px solid rgba(232,184,48,0.35); border-radius: 24px; padding: 2.4rem 2.8rem;
-      display: grid; grid-template-columns: auto 1fr; column-gap: 2rem; align-items: start; position: relative;
+      display: flex; flex-direction: column; align-items: flex-start; position: relative;
     }
-    .service-card.free-tier .service-icon { grid-row: 1 / 4; margin-top: 0.3rem; background: var(--gold-pale); border: 1px solid rgba(232,184,48,0.3); }
-    .service-card.free-tier h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; margin-bottom: 0.7rem; }
-    .service-card.free-tier p { font-size: 0.9rem; line-height: 1.75; color: var(--muted); margin-bottom: 0.5rem; }
-    .service-card.free-tier .service-tag { margin-top: 0.8rem; }
+    .service-card.free-tier .service-icon { background: var(--gold-pale); border: 1px solid rgba(232,184,48,0.3); margin-bottom: 1.4rem; }
+    .service-card.free-tier h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; margin-bottom: 0.8rem; }
+    .service-card.free-tier p { font-size: 0.9rem; line-height: 1.75; color: var(--muted); margin-bottom: 0.5rem; max-width: 72ch; }
+    .service-card.free-tier .service-tag { margin-top: 1rem; }
     .service-status {
       position: absolute; top: 1.5rem; right: 1.8rem;
       font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
@@ -155,7 +155,7 @@
     }
 
     /* Active paid cards — 2 column */
-    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left; }
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left; align-items: start; }
     .service-card.active {
       border-radius: 24px; padding: 2.4rem; border: 1px solid var(--border); background: var(--white);
       transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
@@ -237,6 +237,16 @@
     .portfolio-meta-item { font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; gap: 0.3rem; }
     .portfolio-meta-item strong { color: var(--plum-light); font-weight: 500; }
 
+    .portfolio-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.2rem; font-size: 0.78rem; font-weight: 500;
+      color: var(--plum-light); text-decoration: none;
+      border-bottom: 1px solid var(--lilac); padding-bottom: 0.1rem;
+      transition: color 0.2s, border-color 0.2s; align-self: flex-start;
+    }
+    .portfolio-link:hover { color: var(--plum); border-color: var(--plum-light); }
+    .portfolio-link::after { content: "→"; font-size: 0.75rem; }
+
     .portfolio-note {
       margin-top: 2.5rem; padding: 1.4rem 1.8rem;
       background: var(--gold-pale); border: 1px solid rgba(232,184,48,0.3);
@@ -295,8 +305,7 @@
       .services-grid { grid-template-columns: 1fr; }
       .mini-grid { grid-template-columns: 1fr; }
       .client-types { grid-template-columns: 1fr 1fr; }
-      .service-card.free-tier { grid-template-columns: 1fr; }
-      .service-card.free-tier .service-icon { grid-row: auto; }
+      .service-card.free-tier { padding: 2rem; }
     }
     @media (max-width: 640px) {
       .nav-links { display: none; }
@@ -370,16 +379,12 @@
     <p class="section-body" style="margin-top:1rem">I hold an ISO 42001 AI Management Systems certification, serve as a Certified ASEAN AI Master Trainer under the ASEAN Foundation, and sit on the GCCC Technology Committee. I've trained 5,000+ professionals across public sector, education, and development sectors — including a program that culminated in a presentation to the President of the Philippines.</p>
     <p class="section-body" style="margin-top:1rem">I apply the same systems thinking to my own career and practice — which means I take on engagements selectively, work deeply rather than broadly, and stay accountable to outcomes long after the workshop ends.</p>
     <div class="about-badges">
-     <div class="badge-cloud">
-  <span class="badge hl">ASEAN AI Master Trainer</span>
-  <span class="badge hl">ISO 42001 AI Management Systems Implementer</span>
-  
-  <span class="badge mid">Systems-Led AI Enablement</span>
-  <span class="badge mid">Project Management Professional (PMI)</span>
-  
-  <span class="badge soft">Philippines & ASEAN Market</span>
-  <span class="badge pale">Certified Design Thinking Facilitator</span>
-</div>
+      <span class="badge hl">ASEAN AI Master Trainer</span>
+      <span class="badge hl">ISO 42001 AI Management Systems Implementer</span>
+      <span class="badge mid">Systems-Led AI Enablement</span>
+      <span class="badge mid">Project Management Professional (PMI)</span>
+      <span class="badge soft">Philippines &amp; ASEAN Market</span>
+      <span class="badge pale">Certified Design Thinking Facilitator</span>
     </div>
   </div>
 <div class="about-photo">
@@ -542,13 +547,26 @@
 
     <div class="portfolio-card">
       <span class="portfolio-type" style="background:rgba(232,184,48,0.12); color:var(--gold-deep); border:1px solid rgba(232,184,48,0.25);">👩‍💼 Professional Community</span>
-      <h3>Prompt Engineering &amp; AI for Marketing Professionals</h3>
-      <p>Practical workshops for marketing virtual assistants and professionals within the WIN WIN Women Inter Industry Network — covering AI tools for content creation, client productivity, and prompt engineering to sharpen their competitive edge in an AI-accelerated market.</p>
+      <h3>AI-Readiness for Leaders Workshop</h3>
+      <p>A focused session for senior members of the WIN Women Inter Industry Network on building AI readiness at the leadership level — covering strategic AI literacy, human and AI collaboration, and how leaders can model confident, responsible AI adoption for their teams.</p>
       <div class="portfolio-meta">
-        <span class="portfolio-meta-item">🏢 <strong>WIN WIN Network</strong></span>
-        <span class="portfolio-meta-item">👥 <strong>Marketing &amp; VA professionals</strong></span>
-        <span class="portfolio-meta-item">📆 <strong>Workshop series</strong></span>
+        <span class="portfolio-meta-item">🏢 <strong>WIN Women Inter Industry Network</strong></span>
+        <span class="portfolio-meta-item">👥 <strong>Senior professionals and leaders</strong></span>
+        <span class="portfolio-meta-item">📆 <strong>Half-day workshop</strong></span>
       </div>
+      <a href="#" class="portfolio-link">Read more</a>
+    </div>
+
+    <div class="portfolio-card">
+      <span class="portfolio-type" style="background:rgba(232,184,48,0.12); color:var(--gold-deep); border:1px solid rgba(232,184,48,0.25);">📣 Marketing Sector</span>
+      <h3>Prompt Engineering and AI Tools for Marketing Professionals</h3>
+      <p>A hands-on workshop for a marketing agency team covering practical AI tools for content creation, campaign ideation, and client productivity — with prompt engineering as the core skill. Participants left with a working prompt library tailored to their specific client work.</p>
+      <div class="portfolio-meta">
+        <span class="portfolio-meta-item">🏢 <strong>Marketing Agency</strong></span>
+        <span class="portfolio-meta-item">👥 <strong>Marketing professionals</strong></span>
+        <span class="portfolio-meta-item">📆 <strong>Full-day workshop</strong></span>
+      </div>
+      <a href="#" class="portfolio-link">Read more</a>
     </div>
 
   </div>
